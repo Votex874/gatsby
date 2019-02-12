@@ -9,9 +9,9 @@ const IndexPage = ({data}) => (
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     <article>
       <div>
-      {data.pokedex.pokemons.map(pokemon => 
-          <div>
-            <a href="/pokemon">
+      {data.pokedex.pokemons.map((pokemon, i) => 
+          <div key={i}>
+            <a href={`/pokemon/${pokemon.name}`} >
               <img style={{ maxHeight: '150px' }} src={pokemon.image} alt={pokemon.name} />
               <dl>
                 <dt>Name</dt>
@@ -25,7 +25,7 @@ const IndexPage = ({data}) => (
   </Layout>
 )
 
-export const query = graphql `
+export const query = graphql`
   query{
     pokedex{
       pokemons(first: 200){
